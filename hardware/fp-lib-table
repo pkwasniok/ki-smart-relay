@@ -1,0 +1,5 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Seeed Studio")(type "KiCad")(uri "${KIPRJMOD}/lib/seeed_studio")(options "")(descr ""))
+  (lib (name "Relpol")(type "KiCad")(uri "${KIPRJMOD}/lib/relpol")(options "")(descr ""))
+)

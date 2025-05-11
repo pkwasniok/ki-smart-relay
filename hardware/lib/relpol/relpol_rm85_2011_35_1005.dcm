@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP RM85-2011-35-1005
+D Relpol PCB Mount Non-Latching Relay, 5V dc Coil 16 A Non-Latching Relay
+K
+F https://www.tme.eu/Document/59558cd216efa4c8744bca8622313f6c/e_RM85.pdf
+$ENDCMP
+#
+#End Doc Library
