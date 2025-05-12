@@ -3,4 +3,5 @@
   (lib (name "Seeed Studio")(type "KiCad")(uri "${KIPRJMOD}/lib/seeed_studio")(options "")(descr ""))
   (lib (name "Relpol")(type "KiCad")(uri "${KIPRJMOD}/lib/relpol")(options "")(descr ""))
   (lib (name "Mean Well")(type "KiCad")(uri "${KIPRJMOD}/lib/mean_well")(options "")(descr ""))
+  (lib (name "Degson Electronics")(type "KiCad")(uri "${KIPRJMOD}/lib/degson_electronics")(options "")(descr ""))
 )
