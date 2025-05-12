@@ -2,4 +2,5 @@
   (version 7)
   (lib (name "Seeed Studio")(type "KiCad")(uri "${KIPRJMOD}/lib/seeed_studio/seeed_studio_xiao.kicad_sym")(options "")(descr ""))
   (lib (name "Relpol")(type "KiCad")(uri "${KIPRJMOD}/lib/relpol/relpol_rm85_2011_35_1005.kicad_sym")(options "")(descr ""))
+  (lib (name "Mean Well")(type "KiCad")(uri "${KIPRJMOD}/lib/mean_well/IRM-03-5.kicad_sym")(options "")(descr ""))
 )
