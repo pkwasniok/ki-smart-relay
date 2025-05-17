@@ -2584,16 +2584,6 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 39.37) (xy 50.8 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "25e1b220-eb11-4585-9bf3-85bf6a90ccc0")
-	)
-	(wire
-		(pts
 			(xy 68.58 134.62) (xy 72.39 134.62)
 		)
 		(stroke
@@ -2714,7 +2704,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 116.84) (xy 207.01 116.84)
+			(xy 179.07 107.95) (xy 184.15 107.95)
 		)
 		(stroke
 			(width 0)
@@ -2734,7 +2724,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 119.38) (xy 207.01 119.38)
+			(xy 179.07 110.49) (xy 184.15 110.49)
 		)
 		(stroke
 			(width 0)
@@ -2834,6 +2824,16 @@
 	)
 	(wire
 		(pts
+			(xy 100.33 46.99) (xy 105.41 46.99)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "73994cd7-339a-4d08-8d09-2c98b59e9c1f")
+	)
+	(wire
+		(pts
 			(xy 99.06 74.93) (xy 104.14 74.93)
 		)
 		(stroke
@@ -2874,7 +2874,17 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 144.78) (xy 207.01 144.78)
+			(xy 44.45 35.56) (xy 50.8 35.56)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "8a7f40f7-0456-44c4-a3e2-8347dd024705")
+	)
+	(wire
+		(pts
+			(xy 179.07 135.89) (xy 184.15 135.89)
 		)
 		(stroke
 			(width 0)
@@ -2884,7 +2894,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 129.54) (xy 207.01 129.54)
+			(xy 179.07 120.65) (xy 184.15 120.65)
 		)
 		(stroke
 			(width 0)
@@ -2894,13 +2904,13 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 35.56) (xy 50.8 35.56)
+			(xy 100.33 43.18) (xy 105.41 43.18)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "9fe15919-5f95-4a4d-983f-fa70fdb50f8d")
+		(uuid "95e53e02-5411-4ddb-8cd9-59cc1f7744ae")
 	)
 	(wire
 		(pts
@@ -3054,7 +3064,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 132.08) (xy 207.01 132.08)
+			(xy 179.07 123.19) (xy 184.15 123.19)
 		)
 		(stroke
 			(width 0)
@@ -3094,16 +3104,6 @@
 	)
 	(wire
 		(pts
-			(xy 44.45 43.18) (xy 50.8 43.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "dfa782bf-a81b-40cb-a7b2-d6025de42364")
-	)
-	(wire
-		(pts
 			(xy 121.92 35.56) (xy 121.92 31.75)
 		)
 		(stroke
@@ -3134,7 +3134,7 @@
 	)
 	(wire
 		(pts
-			(xy 201.93 142.24) (xy 207.01 142.24)
+			(xy 179.07 133.35) (xy 184.15 133.35)
 		)
 		(stroke
 			(width 0)
@@ -3194,7 +3194,7 @@
 	)
 	(global_label "TEMP_SENSOR_DATA"
 		(shape input)
-		(at 44.45 43.18 180)
+		(at 44.45 35.56 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3204,7 +3204,7 @@
 		)
 		(uuid "02ef59f9-aeca-4a96-b30c-e2f7efad18c0")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 22.7778 43.18 0)
+			(at 22.7778 35.56 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3260,7 +3260,7 @@
 	)
 	(global_label "230VAC_N"
 		(shape input)
-		(at 201.93 119.38 180)
+		(at 179.07 110.49 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3270,7 +3270,7 @@
 		)
 		(uuid "1dffd3e0-2f41-4f31-baa1-6577c43fcd36")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 189.571 119.38 0)
+			(at 166.711 110.49 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3346,72 +3346,6 @@
 			)
 		)
 	)
-	(global_label "RELAY_B_CTRL"
-		(shape input)
-		(at 44.45 31.75 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "3520e38d-eab6-438b-a328-2acfb29b17a9")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 28.0996 31.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "LED_A"
-		(shape input)
-		(at 44.45 35.56 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "42885ad1-f685-41da-a099-4e85c24d4039")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 35.9615 35.56 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
-	(global_label "LED_B"
-		(shape input)
-		(at 44.45 39.37 180)
-		(fields_autoplaced yes)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right)
-		)
-		(uuid "4c0826ee-837a-405a-b495-411c952021e7")
-		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 35.7801 39.37 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-				(hide yes)
-			)
-		)
-	)
 	(global_label "RELAY_B_OUT"
 		(shape input)
 		(at 31.75 134.62 180)
@@ -3436,7 +3370,7 @@
 	)
 	(global_label "230VAC_L"
 		(shape input)
-		(at 201.93 116.84 180)
+		(at 179.07 107.95 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3446,7 +3380,7 @@
 		)
 		(uuid "61a8b45a-8226-4b7f-bf49-51992511c7d6")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 189.8734 116.84 0)
+			(at 167.0134 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3474,6 +3408,28 @@
 					(size 1.27 1.27)
 				)
 				(justify right)
+				(hide yes)
+			)
+		)
+	)
+	(global_label "RELAY_A_CTRL"
+		(shape input)
+		(at 105.41 43.18 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "75c7584c-528f-4a44-8d36-82133c3b3532")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 121.579 43.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3524,7 +3480,7 @@
 	)
 	(global_label "RELAY_A_IN"
 		(shape input)
-		(at 201.93 129.54 180)
+		(at 179.07 120.65 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3534,7 +3490,7 @@
 		)
 		(uuid "94f974da-6b18-404b-90c8-edcc324446fd")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 188.3614 129.54 0)
+			(at 165.5014 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3546,7 +3502,7 @@
 	)
 	(global_label "RELAY_B_IN"
 		(shape input)
-		(at 201.93 142.24 180)
+		(at 179.07 133.35 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3556,7 +3512,7 @@
 		)
 		(uuid "99f1f92e-1d34-43d5-bcd3-684584e86990")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 188.18 142.24 0)
+			(at 165.32 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3588,24 +3544,24 @@
 			)
 		)
 	)
-	(global_label "RELAY_A_CTRL"
+	(global_label "RELAY_B_CTRL"
 		(shape input)
-		(at 44.45 27.94 180)
+		(at 105.41 46.99 0)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify right)
+			(justify left)
 		)
-		(uuid "c31142ee-dd30-426e-b329-591b6186e377")
+		(uuid "b100f7b7-9c99-43db-ba5a-e516fdede073")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 28.281 27.94 0)
+			(at 121.7604 46.99 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 				(hide yes)
 			)
 		)
@@ -3634,7 +3590,7 @@
 	)
 	(global_label "RELAY_B_OUT"
 		(shape input)
-		(at 201.93 144.78 180)
+		(at 179.07 135.89 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3644,7 +3600,7 @@
 		)
 		(uuid "d93153ba-e7da-4054-bafe-87d22c1297e7")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 186.4867 144.78 0)
+			(at 163.6267 135.89 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3656,7 +3612,7 @@
 	)
 	(global_label "RELAY_A_OUT"
 		(shape input)
-		(at 201.93 132.08 180)
+		(at 179.07 123.19 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
@@ -3666,7 +3622,7 @@
 		)
 		(uuid "da2c8220-8997-4252-ab14-57d769058aa9")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 186.6681 132.08 0)
+			(at 163.8081 123.19 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4194,7 +4150,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 212.09 129.54 0)
+		(at 189.23 120.65 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -4203,7 +4159,7 @@
 		(fields_autoplaced yes)
 		(uuid "482d5b68-d979-4bf8-a0f6-5839e3ea1382")
 		(property "Reference" "J2"
-			(at 214.63 129.5399 0)
+			(at 191.77 120.6499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4212,7 +4168,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x02"
-			(at 214.63 132.0799 0)
+			(at 191.77 123.1899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4220,8 +4176,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Degson Electronics:SHDR2W100P0X500_1X2_1000X780X1020P"
-			(at 212.09 129.54 0)
+		(property "Footprint" "Degson Electronics:DG1285002P14"
+			(at 189.23 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4230,7 +4186,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 212.09 129.54 0)
+			(at 189.23 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4239,7 +4195,7 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 212.09 129.54 0)
+			(at 189.23 120.65 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5045,7 +5001,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 212.09 116.84 0)
+		(at 189.23 107.95 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5054,7 +5010,7 @@
 		(fields_autoplaced yes)
 		(uuid "7fe2500a-c581-4f76-93dd-e9b14e9f2c9a")
 		(property "Reference" "J1"
-			(at 214.63 116.8399 0)
+			(at 191.77 107.9499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5063,7 +5019,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x02"
-			(at 214.63 119.3799 0)
+			(at 191.77 110.4899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5071,8 +5027,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Degson Electronics:SHDR2W100P0X500_1X2_1000X780X1020P"
-			(at 212.09 116.84 0)
+		(property "Footprint" "Degson Electronics:DG1285002P14"
+			(at 189.23 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5081,7 +5037,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 212.09 116.84 0)
+			(at 189.23 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5090,7 +5046,7 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 212.09 116.84 0)
+			(at 189.23 107.95 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5896,7 +5852,7 @@
 	)
 	(symbol
 		(lib_id "Connector:Screw_Terminal_01x02")
-		(at 212.09 142.24 0)
+		(at 189.23 133.35 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -5905,7 +5861,7 @@
 		(fields_autoplaced yes)
 		(uuid "e9bbc7ef-d611-4b78-98c9-d3e03a2c3308")
 		(property "Reference" "J3"
-			(at 214.63 142.2399 0)
+			(at 191.77 133.3499 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5914,7 +5870,7 @@
 			)
 		)
 		(property "Value" "Screw_Terminal_01x02"
-			(at 214.63 144.7799 0)
+			(at 191.77 135.8899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5922,8 +5878,8 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Degson Electronics:SHDR2W100P0X500_1X2_1000X780X1020P"
-			(at 212.09 142.24 0)
+		(property "Footprint" "Degson Electronics:DG1285002P14"
+			(at 189.23 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5932,7 +5888,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 212.09 142.24 0)
+			(at 189.23 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5941,7 +5897,7 @@
 			)
 		)
 		(property "Description" "Generic screw terminal, single row, 01x02, script generated (kicad-library-utils/schlib/autogen/connector/)"
-			(at 212.09 142.24 0)
+			(at 189.23 133.35 0)
 			(effects
 				(font
 					(size 1.27 1.27)
