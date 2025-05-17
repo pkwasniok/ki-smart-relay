@@ -2420,6 +2420,16 @@
 	)
 	(wire
 		(pts
+			(xy 44.45 31.75) (xy 50.8 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4be0f7e1-fbca-480d-ad3a-f880656345b7")
+	)
+	(wire
+		(pts
 			(xy 99.06 116.84) (xy 104.14 116.84)
 		)
 		(stroke
@@ -2550,13 +2560,13 @@
 	)
 	(wire
 		(pts
-			(xy 100.33 46.99) (xy 105.41 46.99)
+			(xy 44.45 27.94) (xy 50.8 27.94)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "73994cd7-339a-4d08-8d09-2c98b59e9c1f")
+		(uuid "744c1bb1-d753-45e2-ae7a-73b5804d20f9")
 	)
 	(wire
 		(pts
@@ -2607,16 +2617,6 @@
 			(type default)
 		)
 		(uuid "90f32042-2f26-4fff-89eb-d5b90e3e5bbf")
-	)
-	(wire
-		(pts
-			(xy 100.33 43.18) (xy 105.41 43.18)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "95e53e02-5411-4ddb-8cd9-59cc1f7744ae")
 	)
 	(wire
 		(pts
@@ -3046,22 +3046,22 @@
 	)
 	(global_label "RELAY_A_CTRL"
 		(shape input)
-		(at 105.41 46.99 0)
+		(at 44.45 27.94 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "75c7584c-528f-4a44-8d36-82133c3b3532")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 121.579 46.99 0)
+			(at 28.281 27.94 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
@@ -3178,22 +3178,22 @@
 	)
 	(global_label "RELAY_B_CTRL"
 		(shape input)
-		(at 105.41 43.18 0)
+		(at 44.45 31.75 180)
 		(fields_autoplaced yes)
 		(effects
 			(font
 				(size 1.27 1.27)
 			)
-			(justify left)
+			(justify right)
 		)
 		(uuid "b100f7b7-9c99-43db-ba5a-e516fdede073")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 121.7604 43.18 0)
+			(at 28.0996 31.75 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 				(hide yes)
 			)
 		)
