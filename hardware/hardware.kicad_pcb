@@ -6055,6 +6055,146 @@
 		)
 		(embedded_fonts no)
 	)
+	(gr_line
+		(start 85.5 48.5)
+		(end 76.5 48.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "054de83a-a998-4a1a-9e0e-fa6d58d71807")
+	)
+	(gr_line
+		(start 70 43.5)
+		(end 70 36.75)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "0ca72c48-4cb1-4cc2-81e9-ba0236d8b9a1")
+	)
+	(gr_line
+		(start 70 36.75)
+		(end 68.75 35.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "100cef2b-5eba-4bda-9339-f62dc0f18b82")
+	)
+	(gr_line
+		(start 61 48.5)
+		(end 70 48.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "38657c62-ddda-4c02-8db1-ffae157fe4e5")
+	)
+	(gr_line
+		(start 85.5 43.5)
+		(end 85.5 36.75)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "4b68e733-0e76-40ce-8288-e6041d7c6f4b")
+	)
+	(gr_line
+		(start 58 45.5)
+		(end 61 48.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "52b8f2e1-8d6b-4a20-b5c5-2e746d5fb654")
+	)
+	(gr_line
+		(start 62.5 43.5)
+		(end 70 43.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "755ad2ce-ecdf-42b9-ba2a-c3f6414fe727")
+	)
+	(gr_line
+		(start 62.835834 35.5)
+		(end 58 40.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "7c065195-0246-4236-b03f-6f6d038fced4")
+	)
+	(gr_line
+		(start 74 39.75)
+		(end 78.382468 35.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "7dd581e3-b15d-4de6-b4c0-0929c7e693b0")
+	)
+	(gr_line
+		(start 76.5 48.5)
+		(end 74 46)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "a2dce5cb-48ab-4dbd-98fc-faa10cbd9601")
+	)
+	(gr_line
+		(start 78 43.5)
+		(end 85.5 43.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "a9699d3e-1ea2-4cc5-b911-2c26ae55d73c")
+	)
+	(gr_line
+		(start 58 40.5)
+		(end 58 45.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "ad86a788-82c9-43da-b111-8e0f89ed5080")
+	)
+	(gr_line
+		(start 85.5 36.75)
+		(end 84.25 35.5)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "d2cce236-ecad-40f0-8266-31dc9e548069")
+	)
+	(gr_line
+		(start 74 46)
+		(end 74 39.75)
+		(stroke
+			(width 3)
+			(type solid)
+		)
+		(layer "B.Mask")
+		(uuid "fd376ae9-d41f-4b2a-8052-e62ddfe633e8")
+	)
 	(gr_rect
 		(start 30.989 27.045)
 		(end 113.989 81.545)
