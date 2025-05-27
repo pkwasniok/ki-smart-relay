@@ -3654,7 +3654,7 @@
 				)
 			)
 		)
-		(property "Footprint" "IRM0312"
+		(property "Footprint" "Mean Well:IRM0312"
 			(at 193.04 127.94 0)
 			(effects
 				(font
