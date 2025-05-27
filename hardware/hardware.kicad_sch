@@ -3989,7 +3989,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Degson Electronics:DG1285002P14"
+		(property "Footprint" "Degson Electronics:SHDR2W100P0X500_1X2_1000X780X1020P"
 			(at 185.42 73.66 0)
 			(effects
 				(font
@@ -4840,7 +4840,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Degson Electronics:DG1285002P14"
+		(property "Footprint" "Degson Electronics:SHDR2W100P0X500_1X2_1000X780X1020P"
 			(at 185.42 60.96 0)
 			(effects
 				(font
@@ -5556,7 +5556,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Degson Electronics:DG1285002P14"
+		(property "Footprint" "Degson Electronics:SHDR2W100P0X500_1X2_1000X780X1020P"
 			(at 185.42 86.36 0)
 			(effects
 				(font
