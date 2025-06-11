@@ -1,23 +1,59 @@
+#include "led.h"
+#include "setup.h"
+#include "mqtt.h"
+#include "relay.h"
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_random.h"
-#include "identifier.h"
+#include "esp_system.h"
+#include "esp_log.h"
 
+#define TAG "APP"
 
-void app_main(void) {
-    char identifier[6];
+#define STATE_SETUP   0
+#define STATE_RUNNING 1
+#define STATE_ERROR   2
+
+void app_main(void)
+{
+    int state = STATE_SETUP;
 
     while (1) {
-        identifier_generate(identifier, 6);
+        switch (state) {
 
-        printf("RELAY_");
-        for (int i = 0; i < 6; i++) {
-            printf("%c", identifier[i]);
+            case STATE_SETUP:
+                ESP_LOGI(TAG, "Entering setup state");
+
+                if (app_setup() == SETUP_SUCCESS) {
+                    state = STATE_RUNNING; 
+                } else {
+                    state = STATE_ERROR;
+                }
+
+                break;
+
+            case STATE_RUNNING:
+                ESP_LOGI(TAG, "Entering running state");
+
+                led_enable();
+
+                mqtt_task(NULL);
+                state = STATE_ERROR;
+
+                led_disable();
+
+                break;
+
+            case STATE_ERROR:
+                ESP_LOGI(TAG, "Entering error state");
+
+                ESP_LOGE(TAG, "Restarting in 5 seconds...");
+                vTaskDelay(5000 / portTICK_PERIOD_MS);
+                esp_restart();
+
+                break;
+
         }
-        printf("\n");
-
-        vTaskDelay(1000 / portTICK_PERIOD_MS);
     }
 }
 
