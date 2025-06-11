@@ -8,18 +8,20 @@
 #include "esp_netif.h"
 #include "esp_wifi.h"
 #include "esp_log.h"
+#include "identifier.h"
 
 #define TAG "SETUP"
 
 #define SUCCESS 0
 #define ERROR   1
 
-#define STATE_SETUP_IO    0
-#define STATE_SETUP_NVS   1
-#define STATE_SETUP_NETIF 2
-#define STATE_SETUP_WIFI  3
-#define STATE_SUCCESS     4
-#define STATE_ERROR       5
+#define STATE_SETUP_IO         0
+#define STATE_SETUP_NVS        1
+#define STATE_SETUP_IDENTIFIER 2
+#define STATE_SETUP_NETIF      3
+#define STATE_SETUP_WIFI       4
+#define STATE_SUCCESS          5
+#define STATE_ERROR            6
 
 /*
  * Non-volatile storage (NVS) library is designed to store key-value pairs in flash.
@@ -38,6 +40,18 @@ int nvs_setup(void) {
     if (err != ESP_OK) {
         return ERROR;
     }
+
+    return SUCCESS;
+}
+
+int identifier_setup(void) {
+    char identifier[255] = "RELAY_";
+
+    identifier_generate(identifier + 6, 6);
+
+    identifier[12] = '\0';
+
+    printf("%s\n", identifier);
 
     return SUCCESS;
 }
@@ -79,9 +93,19 @@ int app_setup(void) {
             case STATE_SETUP_NVS:
                 if (nvs_setup() == SUCCESS) {
                     ESP_LOGI(TAG, "Finished NVS setup");
-                    state = STATE_SETUP_NETIF;
+                    state = STATE_SETUP_IDENTIFIER;
                 } else {
                     ESP_LOGE(TAG, "Error occured during NVS setup");
+                    state = STATE_ERROR;
+                }
+                break;
+
+            case STATE_SETUP_IDENTIFIER:
+                if (identifier_setup() == SUCCESS) {
+                    ESP_LOGI(TAG, "Finished IDENTIFIER setup");
+                    state = STATE_SETUP_NETIF;
+                } else {
+                    ESP_LOGE(TAG, "Error occured during IDENTIFIER setup");
                     state = STATE_ERROR;
                 }
                 break;
