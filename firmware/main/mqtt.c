@@ -73,12 +73,12 @@ void mqtt_task(void* pvParameters) {
             esp_mqtt_client_subscribe(mqtt_client, TOPIC_RELAY_A_SET, 0);
             esp_mqtt_client_subscribe(mqtt_client, TOPIC_RELAY_B_SET, 0);
 
-            if (relay_get(RELAY_CH_A) == RELAY_ENABLE)
+            if (relay_get_state(RELAY_CH_A))
                 esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_A_STATE, "1", 1, 0, 1);
             else
                 esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_A_STATE, "0", 1, 0, 1);
 
-            if (relay_get(RELAY_CH_B) == RELAY_ENABLE)
+            if (relay_get_state(RELAY_CH_B))
                 esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_B_STATE, "1", 1, 0, 1);
             else
                 esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_B_STATE, "0", 1, 0, 1);
@@ -94,18 +94,18 @@ void mqtt_task(void* pvParameters) {
 
             if (strcmp(topic, TOPIC_RELAY_A_SET) == 0) {
                 if (data[0] == '1') {
-                    relay_enable(RELAY_CH_A);
+                    relay_set_state(RELAY_CH_A, 1);
                     esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_A_STATE, "1", 1, 0, 1);
                 } else if (data[0] == '0') {
-                    relay_disable(RELAY_CH_A);
+                    relay_set_state(RELAY_CH_A, 0);
                     esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_A_STATE, "0", 1, 0, 1);
                 }
             } else if (strcmp(topic, TOPIC_RELAY_B_SET) == 0) {
                 if (data[0] == '1') {
-                    relay_enable(RELAY_CH_B);
+                    relay_set_state(RELAY_CH_B, 1);
                     esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_B_STATE, "1", 1, 0, 1);
                 } else if (data[0] == '0') {
-                    relay_disable(RELAY_CH_B);
+                    relay_set_state(RELAY_CH_B, 0);
                     esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_B_STATE, "0", 1, 0, 1);
                 }
             }

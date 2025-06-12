@@ -1,14 +1,12 @@
 #pragma once
 
-#define RELAY_CH_A 0
-#define RELAY_CH_B 1
+typedef enum {
+    RELAY_CH_A,
+    RELAY_CH_B,
+    RELAY_CH_ALL,
+} relay_ch_t;
 
-#define RELAY_DISABLE 0
-#define RELAY_ENABLE  1
-
-void relay_setup();
-void relay_set(int channel, int state);
-void relay_enable(int channel);
-void relay_disable(int channel);
-int relay_get(int channel);
+void relay_setup(void);
+void relay_set_state(relay_ch_t channel, int state);
+int relay_get_state(relay_ch_t channel);
 
