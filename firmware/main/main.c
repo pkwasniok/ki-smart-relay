@@ -51,29 +51,6 @@ int app_main(void) {
 
     ESP_LOGI("APP", "Finished initialization");
 
-    // ESP_LOGI("APP", "Started AP scan");
-    //
-    // err = esp_wifi_scan_start(NULL, true);
-    // ESP_ERROR_CHECK(err);
-    //
-    // ESP_LOGI("APP", "Finished AP scan");
-    //
-    // uint16_t ap_length;
-    // err = esp_wifi_scan_get_ap_num(&ap_length);
-    // ESP_ERROR_CHECK(err);
-    //
-    // ESP_LOGI("APP", "Found %d APs", ap_length);
-    //
-    // wifi_ap_record_t ap_records[16];
-    // memset(ap_records, 0, sizeof(ap_records));
-    //
-    // err = esp_wifi_scan_get_ap_records(&ap_length, ap_records);
-    // ESP_ERROR_CHECK(err);
-    //
-    // for (int i = 0; i < ap_length; i++) {
-    //     printf("%s -> CH: %d, RSSI: %d\n", ap_records[i].ssid, ap_records[i].primary, ap_records[i].rssi);
-    // }
-
     uint16_t ap_number;
     wifi_ap_record_t ap_records[16];
 
