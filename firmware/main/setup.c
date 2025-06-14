@@ -9,6 +9,7 @@
 #include "esp_wifi.h"
 #include "esp_log.h"
 #include "identifier.h"
+#include "driver/gpio.h"
 
 #define TAG "SETUP"
 
@@ -86,6 +87,13 @@ int app_setup(void) {
             case STATE_SETUP_IO:
                 relay_setup();
                 led_setup();
+
+                gpio_set_direction(3, GPIO_MODE_OUTPUT);
+                gpio_set_direction(14, GPIO_MODE_OUTPUT);
+
+                gpio_set_level(3, 0);
+                gpio_set_level(14, 0);
+
                 ESP_LOGI(TAG, "Finished IO setup");
                 state = STATE_SETUP_NVS;
                 break;
