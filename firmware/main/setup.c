@@ -1,7 +1,5 @@
 #include "setup.h"
 #include "config.h"
-#include "relay.h"
-#include "led.h"
 #include "wifi.h"
 #include "nvs_flash.h"
 #include "esp_event.h"
@@ -9,7 +7,10 @@
 #include "esp_wifi.h"
 #include "esp_log.h"
 #include "identifier.h"
-#include "driver/gpio.h"
+
+#include "board/wifi_antenna.h"
+#include "board/relay.h"
+#include "board/led.h"
 
 #define TAG "SETUP"
 
@@ -88,11 +89,7 @@ int app_setup(void) {
                 relay_setup();
                 led_setup();
 
-                gpio_set_direction(3, GPIO_MODE_OUTPUT);
-                gpio_set_direction(14, GPIO_MODE_OUTPUT);
-
-                gpio_set_level(3, 0);
-                gpio_set_level(14, 1);
+                wifi_antenna_init(WIFI_ANTENNA_EXTERNAL);
 
                 ESP_LOGI(TAG, "Finished IO setup");
                 state = STATE_SETUP_NVS;

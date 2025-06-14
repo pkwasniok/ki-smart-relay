@@ -6,7 +6,8 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/event_groups.h"
 #include "portmacro.h"
-#include "relay.h"
+
+#include "board/relay.h"
 
 #define TAG "MQTT"
 
