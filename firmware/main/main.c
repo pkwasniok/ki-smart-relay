@@ -5,6 +5,8 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 
+#include "drivers/wifi_antenna.h"
+
 #include "nvs.h"
 #include "nvs_flash.h"
 #include "esp_err.h"
@@ -17,11 +19,7 @@
 int app_main(void) {
     esp_err_t err;
 
-    gpio_set_direction(3, GPIO_MODE_OUTPUT);
-    gpio_set_level(3, 0);
-
-    gpio_set_direction(14, GPIO_MODE_OUTPUT);
-    gpio_set_level(14, 0);
+    wifi_antenna_init(WIFI_ANTENNA_EXTERNAL);
 
     err = nvs_flash_init();
     if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
