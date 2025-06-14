@@ -1,59 +1,54 @@
-#include "led.h"
-#include "setup.h"
-#include "mqtt.h"
-#include "relay.h"
 #include <stdio.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "esp_system.h"
+#include "driver/gpio.h"
 #include "esp_log.h"
 
-#define TAG "APP"
+#define TAG "TEST"
 
-#define STATE_SETUP   0
-#define STATE_RUNNING 1
-#define STATE_ERROR   2
+#define RELAY_A_GPIO 0
+#define RELAY_B_GPIO 1
+#define LED_GPIO 15
 
-void app_main(void)
-{
-    int state = STATE_SETUP;
+void delay(unsigned int millis);
+
+int app_main(void) {
+    gpio_set_direction(LED_GPIO, GPIO_MODE_OUTPUT);
+    gpio_set_direction(RELAY_A_GPIO, GPIO_MODE_OUTPUT);
+    gpio_set_direction(RELAY_B_GPIO, GPIO_MODE_OUTPUT);
+
+    gpio_set_level(LED_GPIO, 1);
 
     while (1) {
-        switch (state) {
+        ESP_LOGI(TAG, "Testing relay A");
 
-            case STATE_SETUP:
-                ESP_LOGI(TAG, "Entering setup state");
-
-                if (app_setup() == SETUP_SUCCESS) {
-                    state = STATE_RUNNING; 
-                } else {
-                    state = STATE_ERROR;
-                }
-
-                break;
-
-            case STATE_RUNNING:
-                ESP_LOGI(TAG, "Entering running state");
-
-                led_enable();
-
-                mqtt_task(NULL);
-                state = STATE_ERROR;
-
-                led_disable();
-
-                break;
-
-            case STATE_ERROR:
-                ESP_LOGI(TAG, "Entering error state");
-
-                ESP_LOGE(TAG, "Restarting in 5 seconds...");
-                vTaskDelay(5000 / portTICK_PERIOD_MS);
-                esp_restart();
-
-                break;
-
+        for (int i = 0; i < 5; i++) {
+            gpio_set_level(LED_GPIO, 0);
+            gpio_set_level(RELAY_A_GPIO, 1);
+            delay(250);
+            gpio_set_level(LED_GPIO, 1);
+            gpio_set_level(RELAY_A_GPIO, 0);
+            delay(250);
         }
+
+        delay(1000);
+
+        ESP_LOGI(TAG, "Testing relay B");
+
+        for (int i = 0; i < 5; i++) {
+            gpio_set_level(LED_GPIO, 0);
+            gpio_set_level(RELAY_B_GPIO, 1);
+            delay(250);
+            gpio_set_level(LED_GPIO, 1);
+            gpio_set_level(RELAY_B_GPIO, 0);
+            delay(250);
+        }
+
+        delay(1000);
     }
+}
+
+void delay(unsigned int millis) {
+    vTaskDelay(millis / portTICK_PERIOD_MS);
 }
 
