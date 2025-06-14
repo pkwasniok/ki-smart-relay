@@ -92,7 +92,7 @@ int app_setup(void) {
                 gpio_set_direction(14, GPIO_MODE_OUTPUT);
 
                 gpio_set_level(3, 0);
-                gpio_set_level(14, 0);
+                gpio_set_level(14, 1);
 
                 ESP_LOGI(TAG, "Finished IO setup");
                 state = STATE_SETUP_NVS;
