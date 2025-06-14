@@ -1,12 +1,10 @@
 #include "led.h"
 #include "setup.h"
 #include "mqtt.h"
-#include "relay.h"
-#include <stdio.h>
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
 #include "esp_system.h"
 #include "esp_log.h"
+
+#include "utils/delay.h"
 
 #define TAG "APP"
 
@@ -48,7 +46,7 @@ void app_main(void)
                 ESP_LOGI(TAG, "Entering error state");
 
                 ESP_LOGE(TAG, "Restarting in 5 seconds...");
-                vTaskDelay(5000 / portTICK_PERIOD_MS);
+                delay_ms(5000);
                 esp_restart();
 
                 break;
