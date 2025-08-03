@@ -11,16 +11,16 @@
 
 #define TAG "MQTT"
 
-#define TOPIC_RELAY_A_STATE CONFIG_MQTT_TOPIC_BASE "/" CONFIG_MQTT_TOPIC_RELAY_A "/state"
-#define TOPIC_RELAY_B_STATE CONFIG_MQTT_TOPIC_BASE "/" CONFIG_MQTT_TOPIC_RELAY_B "/state"
-#define TOPIC_RELAY_A_SET   CONFIG_MQTT_TOPIC_BASE "/" CONFIG_MQTT_TOPIC_RELAY_A "/set"
-#define TOPIC_RELAY_B_SET   CONFIG_MQTT_TOPIC_BASE "/" CONFIG_MQTT_TOPIC_RELAY_B "/set"
+#define TOPIC_HEATER_SET    CONFIG_MQTT_TOPIC_BASE "/heater/set"
+#define TOPIC_HEATER_STATUS CONFIG_MQTT_TOPIC_BASE "/heater/state"
 
 #define EVENT_CONNECTED    BIT0
 #define EVENT_DISCONNECTED BIT1
 #define EVENT_DATA         BIT2
 
 EventGroupHandle_t event_group_mqtt;
+
+esp_mqtt_client_handle_t mqtt_client;
 
 char topic[255];
 char data[255];
@@ -62,7 +62,7 @@ void mqtt_task(void* pvParameters) {
         .broker.address.uri = CONFIG_MQTT_BROKER,
     };
 
-    esp_mqtt_client_handle_t mqtt_client = esp_mqtt_client_init(&mqtt_config);
+    (mqtt_client) = esp_mqtt_client_init(&mqtt_config);
     esp_mqtt_client_register_event(mqtt_client, ESP_EVENT_ANY_ID, &mqtt_event_handler, NULL);
     esp_mqtt_client_start(mqtt_client);
 
@@ -71,18 +71,10 @@ void mqtt_task(void* pvParameters) {
 
         if (event_bits & EVENT_CONNECTED) {
             ESP_LOGI(TAG, "Connected to broker");
-            esp_mqtt_client_subscribe(mqtt_client, TOPIC_RELAY_A_SET, 0);
-            esp_mqtt_client_subscribe(mqtt_client, TOPIC_RELAY_B_SET, 0);
 
-            if (relay_get_state(RELAY_CH_A))
-                esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_A_STATE, "1", 1, 0, 1);
-            else
-                esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_A_STATE, "0", 1, 0, 1);
+            esp_mqtt_client_subscribe(mqtt_client, TOPIC_HEATER_SET, 0);
 
-            if (relay_get_state(RELAY_CH_B))
-                esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_B_STATE, "1", 1, 0, 1);
-            else
-                esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_B_STATE, "0", 1, 0, 1);
+            mqtt_publish("0", 1);
         }
 
         if (event_bits & EVENT_DISCONNECTED) {
@@ -93,24 +85,18 @@ void mqtt_task(void* pvParameters) {
         if (event_bits & EVENT_DATA) {
             ESP_LOGI(TAG, "Received \"%s\" \"%s\"", topic, data);
 
-            if (strcmp(topic, TOPIC_RELAY_A_SET) == 0) {
+            if (strcmp(topic, TOPIC_HEATER_SET) == 0) {
                 if (data[0] == '1') {
-                    relay_set_state(RELAY_CH_A, 1);
-                    esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_A_STATE, "1", 1, 0, 1);
+                    relay_set_state(1);
                 } else if (data[0] == '0') {
-                    relay_set_state(RELAY_CH_A, 0);
-                    esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_A_STATE, "0", 1, 0, 1);
-                }
-            } else if (strcmp(topic, TOPIC_RELAY_B_SET) == 0) {
-                if (data[0] == '1') {
-                    relay_set_state(RELAY_CH_B, 1);
-                    esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_B_STATE, "1", 1, 0, 1);
-                } else if (data[0] == '0') {
-                    relay_set_state(RELAY_CH_B, 0);
-                    esp_mqtt_client_publish(mqtt_client, TOPIC_RELAY_B_STATE, "0", 1, 0, 1);
+                    relay_set_state(0);
                 }
             }
         }
     }
+}
+
+void mqtt_publish(char* value, int length) {
+    esp_mqtt_client_publish(mqtt_client, TOPIC_HEATER_STATUS, value, length, 0, 0);
 }
 

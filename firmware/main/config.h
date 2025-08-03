@@ -1,19 +1,14 @@
 #pragma once
 
-#define CONFIG_HOSTNAME "RELAY_JACUZZI"
+#define CONFIG_HOSTNAME "RELAY_TEST"
 
 #define CONFIG_WIFI_SSID "Nemiland"
 #define CONFIG_WIFI_PASSWORD "Patryk13"
 
 #define CONFIG_MQTT_BROKER "mqtt://192.168.1.30:1883"
-#define CONFIG_MQTT_TOPIC_BASE    "jacuzzi"
-#define CONFIG_MQTT_TOPIC_RELAY_A "relay_a"
-#define CONFIG_MQTT_TOPIC_RELAY_B "relay_b"
+#define CONFIG_MQTT_TOPIC_BASE    "test"
 
 #define CONFIG_GPIO_LED     15
 #define CONFIG_GPIO_RELAY_A 0
 #define CONFIG_GPIO_RELAY_B 1
-
-#define CONFIG_RELAY_AFTER_RESET_ENABLE
-// #define CONFIG_RELAY_AFTER_RESET_DISABLE
 

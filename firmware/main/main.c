@@ -1,3 +1,4 @@
+#include "board/relay.h"
 #include "setup.h"
 #include "mqtt.h"
 #include "esp_system.h"
@@ -11,6 +12,8 @@
 #define STATE_SETUP   0
 #define STATE_RUNNING 1
 #define STATE_ERROR   2
+
+TaskHandle_t task_handle_relay;
 
 void app_main(void)
 {
@@ -35,7 +38,10 @@ void app_main(void)
 
                 led_enable();
 
+                xTaskCreate(task_relay, "relay", 1024, NULL, 1, &task_handle_relay);
+
                 mqtt_task(NULL);
+
                 state = STATE_ERROR;
 
                 led_disable();

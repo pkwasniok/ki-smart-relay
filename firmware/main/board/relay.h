@@ -1,12 +1,11 @@
 #pragma once
 
-typedef enum {
-    RELAY_CH_A,
-    RELAY_CH_B,
-    RELAY_CH_ALL,
-} relay_ch_t;
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
 
 void relay_setup(void);
-void relay_set_state(relay_ch_t channel, int state);
-int relay_get_state(relay_ch_t channel);
+void relay_set_state(int state);
+int relay_get_state(void);
+
+void task_relay(void* pvParameters);
 

@@ -89,7 +89,7 @@ int app_setup(void) {
                 relay_setup();
                 led_setup();
 
-                wifi_antenna_init(WIFI_ANTENNA_EXTERNAL);
+                wifi_antenna_init(WIFI_ANTENNA_INTERNAL);
 
                 ESP_LOGI(TAG, "Finished IO setup");
                 state = STATE_SETUP_NVS;
