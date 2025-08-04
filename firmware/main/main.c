@@ -1,63 +1,71 @@
-#include "board/relay.h"
-#include "setup.h"
-#include "mqtt.h"
+#include "nvs_flash.h"
+#include "esp_netif.h"
 #include "esp_system.h"
 #include "esp_log.h"
+#include "esp_event.h"
+#include "esp_netif.h"
+#include "esp_wifi.h"
 
-#include "utils/delay.h"
-#include "board/led.h"
+#include "config.h"
+#include "board/relay.h"
+#include "mqtt.h"
+#include "wifi.h"
 
-#define TAG "APP"
+#define TAG "main"
 
 #define STATE_SETUP   0
 #define STATE_RUNNING 1
 #define STATE_ERROR   2
 
-TaskHandle_t task_handle_relay;
+TaskHandle_t task_wifi;
+TaskHandle_t task_mqtt;
+TaskHandle_t task_relay;
+
+int nvs_setup(void);
+int netif_setup(void);
 
 void app_main(void)
 {
-    int state = STATE_SETUP;
+    assert(relay_setup() == 0);
+    assert(nvs_setup() == 0);
+    assert(netif_setup() == 0);
+    assert(wifi_setup() == 0);
+    assert(mqtt_setup() == 0);
 
-    while (1) {
-        switch (state) {
+    xTaskCreate(wifi_task, "wifi", 1024, NULL, 10, &task_wifi);
+    xTaskCreate(mqtt_task, "mqtt", 1024, NULL, 10, &task_mqtt);
+    xTaskCreate(relay_task, "relay", 1024, NULL, 10, &task_relay);
+}
 
-            case STATE_SETUP:
-                ESP_LOGI(TAG, "Entering setup state");
+int nvs_setup(void) {
+    esp_err_t err;
 
-                if (app_setup() == SETUP_SUCCESS) {
-                    state = STATE_RUNNING; 
-                } else {
-                    state = STATE_ERROR;
-                }
+    err = nvs_flash_init();
 
-                break;
-
-            case STATE_RUNNING:
-                ESP_LOGI(TAG, "Entering running state");
-
-                led_enable();
-
-                xTaskCreate(task_relay, "relay", 1024, NULL, 1, &task_handle_relay);
-
-                mqtt_task(NULL);
-
-                state = STATE_ERROR;
-
-                led_disable();
-
-                break;
-
-            case STATE_ERROR:
-                ESP_LOGI(TAG, "Entering error state");
-
-                ESP_LOGE(TAG, "Restarting in 5 seconds...");
-                delay_ms(5000);
-                esp_restart();
-
-                break;
-
-        }
+    if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
+       if (nvs_flash_erase() == ESP_OK) {
+            err = nvs_flash_init(); 
+       }
     }
+
+    if (err != ESP_OK)
+        return 1;
+
+    return 0;
+}
+
+int netif_setup(void) {
+    if (esp_netif_init() != ESP_OK)
+        return 1;
+
+    if (esp_event_loop_create_default() != ESP_OK)
+        return 1;
+
+    esp_netif_t* netif = esp_netif_create_default_wifi_sta();
+
+    if (esp_netif_set_hostname(netif, CONFIG_HOSTNAME) != ESP_OK)
+        return 1;
+
+    return 0;
 }
 
