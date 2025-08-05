@@ -5,8 +5,10 @@
 #define CONFIG_WIFI_SSID "Nemiland"
 #define CONFIG_WIFI_PASSWORD "Patryk13"
 
-#define CONFIG_MQTT_BROKER "mqtt://192.168.1.30:1883"
-#define CONFIG_MQTT_TOPIC_BASE    "test"
+#define CONFIG_MQTT_BROKER     "mqtt://192.168.1.30:1883"
+#define CONFIG_MQTT_TOPIC_BASE "test"
+
+#define CONFIG_HEATER_DELAY 60 * 1000
 
 #define CONFIG_GPIO_LED     15
 #define CONFIG_GPIO_RELAY_A 0

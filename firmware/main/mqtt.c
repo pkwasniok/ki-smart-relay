@@ -8,6 +8,7 @@
 #include "esp_event.h"
 #include "mqtt_client.h"
 
+#include "config.h"
 #include "board/relay.h"
 #include "board/led.h"
 
@@ -16,6 +17,9 @@
 #define EVENT_CONNECTED    BIT0
 #define EVENT_DISCONNECTED BIT1
 #define EVENT_DATA         BIT2
+
+#define MQTT_TOPIC_HEATER_SET    (CONFIG_MQTT_TOPIC_BASE "/heater/set")
+#define MQTT_TOPIC_HEATER_STATUS (CONFIG_MQTT_TOPIC_BASE "/heater/status")
 
 esp_mqtt_client_handle_t mqtt_client;
 EventGroupHandle_t event_group;
@@ -78,7 +82,8 @@ void mqtt_task(void* params) {
 
         if (events & EVENT_CONNECTED) {
             ESP_LOGI(TAG, "Connected");
-            esp_mqtt_client_subscribe(mqtt_client, "test/heater/set", 0);
+            esp_mqtt_client_subscribe(mqtt_client, MQTT_TOPIC_HEATER_SET, 0);
+            mqtt_publish(MQTT_TOPIC_HEATER_STATUS, "0");
         }
 
         if (events & EVENT_DISCONNECTED) {
@@ -88,7 +93,7 @@ void mqtt_task(void* params) {
         if (events & EVENT_DATA) {
             ESP_LOGI(TAG, "Received \"%s\" on topic \"%s\"", data, topic);
 
-            if (strcmp(topic, "test/heater/set") == 0) {
+            if (strcmp(topic, MQTT_TOPIC_HEATER_SET) == 0) {
                 if (data[0] == '1') {
                     relay_set_state(1);
                 } else if (data[0] == '0') {

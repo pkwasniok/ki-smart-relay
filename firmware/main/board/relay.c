@@ -7,16 +7,17 @@
 #include "freertos/timers.h"
 #include "freertos/queue.h"
 
-#include "config.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
 
+#include "config.h"
 #include "../mqtt.h"
 
 #define TAG "relay"
 
 #define RELAY_A_GPIO CONFIG_GPIO_RELAY_A
 #define RELAY_B_GPIO CONFIG_GPIO_RELAY_B
+#define MQTT_TOPIC_HEATER_STATUS (CONFIG_MQTT_TOPIC_BASE "/heater/status")
 
 #define STATE_OFF        0
 #define STATE_TRANSITION 1
@@ -42,7 +43,7 @@ int relay_setup(void) {
     if ((queue = xQueueCreate(16, 1)) == NULL)
         return 1;
 
-    if ((timer = xTimerCreate("relay", 5000 / portTICK_PERIOD_MS, pdTRUE, NULL, relay_callback)) == NULL)
+    if ((timer = xTimerCreate("relay", CONFIG_HEATER_DELAY / portTICK_PERIOD_MS, pdTRUE, NULL, relay_callback)) == NULL)
         return 1;
 
     is_initialized = true;
@@ -86,7 +87,7 @@ void relay_task(void* args) {
 
                     if (xTimerStart(timer, 0) == pdPASS) {
                         ESP_LOGI(TAG, "off -> transition");
-                        mqtt_publish("test/heater/status", "1");
+                        mqtt_publish(MQTT_TOPIC_HEATER_STATUS, "1");
                         state = STATE_TRANSITION;
                     }
                 }
@@ -110,7 +111,7 @@ void relay_task(void* args) {
 
                     if (xTimerStop(timer, 0) == pdPASS) {
                         ESP_LOGI(TAG, "transition -> off");
-                        mqtt_publish("test/heater/status", "0");
+                        mqtt_publish(MQTT_TOPIC_HEATER_STATUS, "0");
                         state = STATE_OFF;
                     }
                 }
@@ -124,7 +125,7 @@ void relay_task(void* args) {
                     gpio_set_level(RELAY_B_GPIO, 0);
                     state = STATE_OFF;
 
-                    mqtt_publish("test/heater/status", "0");
+                    mqtt_publish(MQTT_TOPIC_HEATER_STATUS, "0");
 
                     ESP_LOGI(TAG, "on -> off");
                 }
