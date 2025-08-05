@@ -8,6 +8,7 @@
 
 #include "config.h"
 #include "board/relay.h"
+#include "board/wifi_antenna.h"
 #include "mqtt.h"
 #include "wifi.h"
 
@@ -17,7 +18,6 @@
 #define STATE_RUNNING 1
 #define STATE_ERROR   2
 
-TaskHandle_t task_wifi;
 TaskHandle_t task_mqtt;
 TaskHandle_t task_relay;
 
@@ -26,15 +26,16 @@ int netif_setup(void);
 
 void app_main(void)
 {
+    wifi_antenna_init(WIFI_ANTENNA_INTERNAL);
+
     assert(relay_setup() == 0);
     assert(nvs_setup() == 0);
     assert(netif_setup() == 0);
     assert(wifi_setup() == 0);
     assert(mqtt_setup() == 0);
 
-    xTaskCreate(wifi_task, "wifi", 1024, NULL, 10, &task_wifi);
-    xTaskCreate(mqtt_task, "mqtt", 1024, NULL, 10, &task_mqtt);
-    xTaskCreate(relay_task, "relay", 1024, NULL, 10, &task_relay);
+    xTaskCreate(mqtt_task, "mqtt", 2048, NULL, 10, &task_mqtt);
+    xTaskCreate(relay_task, "relay", 2048, NULL, 10, &task_relay);
 }
 
 int nvs_setup(void) {

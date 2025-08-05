@@ -1,14 +1,15 @@
+#include "relay.h"
+
 #include <stdbool.h>
 #include <assert.h>
-
-#include "relay.h"
-#include "config.h"
-#include "driver/gpio.h"
-#include "esp_log.h"
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/timers.h"
 #include "freertos/queue.h"
+
+#include "config.h"
+#include "driver/gpio.h"
+#include "esp_log.h"
 
 #define TAG "relay"
 
@@ -84,7 +85,7 @@ void relay_task(void* args) {
                     if (xTimerStart(timer, 0) == pdPASS)
                         state = STATE_TRANSITION;
 
-                    printf("relay: off -> transition\n");
+                    ESP_LOGI(TAG, "off -> transition");
                 }
 
                 break;
@@ -98,7 +99,7 @@ void relay_task(void* args) {
                     if (xTimerStop(timer, 0) == pdPASS)
                         state = STATE_ON;
 
-                    printf("relay: transition -> on\n");
+                    ESP_LOGI(TAG, "transition -> on");
                 } else if (message == MESSAGE_OFF) {
                     gpio_set_level(RELAY_A_GPIO, 0);
                     gpio_set_level(RELAY_B_GPIO, 0);
@@ -106,7 +107,7 @@ void relay_task(void* args) {
                     if (xTimerStop(timer, 0) == pdPASS)
                         state = STATE_OFF;
 
-                    printf("relay: transition -> off\n");
+                    ESP_LOGI(TAG, "transition -> off");
                 }
 
                 break;
@@ -118,7 +119,7 @@ void relay_task(void* args) {
                     gpio_set_level(RELAY_B_GPIO, 0);
                     state = STATE_OFF;
 
-                    printf("relay: on -> off\n");
+                    ESP_LOGI(TAG, "on -> off");
                 }
 
                 break;

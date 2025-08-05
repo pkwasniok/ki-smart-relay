@@ -10,10 +10,10 @@ void led_setup(void) {
 }
 
 void led_enable(void) {
-    gpio_set_level(GPIO_LED, 1);
+    gpio_set_level(GPIO_LED, 0);
 }
 
 void led_disable(void) {
-    gpio_set_level(GPIO_LED, 0);
+    gpio_set_level(GPIO_LED, 1);
 }
 
