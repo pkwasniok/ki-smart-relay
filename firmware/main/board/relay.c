@@ -11,6 +11,8 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 
+#include "../mqtt.h"
+
 #define TAG "relay"
 
 #define RELAY_A_GPIO CONFIG_GPIO_RELAY_A
@@ -82,10 +84,11 @@ void relay_task(void* args) {
                     gpio_set_level(RELAY_A_GPIO, 1);
                     gpio_set_level(RELAY_B_GPIO, 0);
 
-                    if (xTimerStart(timer, 0) == pdPASS)
+                    if (xTimerStart(timer, 0) == pdPASS) {
+                        ESP_LOGI(TAG, "off -> transition");
+                        mqtt_publish("test/heater/status", "1");
                         state = STATE_TRANSITION;
-
-                    ESP_LOGI(TAG, "off -> transition");
+                    }
                 }
 
                 break;
@@ -96,18 +99,20 @@ void relay_task(void* args) {
                     gpio_set_level(RELAY_A_GPIO, 1);
                     gpio_set_level(RELAY_B_GPIO, 1);
 
-                    if (xTimerStop(timer, 0) == pdPASS)
+                    if (xTimerStop(timer, 0) == pdPASS) {
+                        ESP_LOGI(TAG, "transition -> on");
                         state = STATE_ON;
+                    }
 
-                    ESP_LOGI(TAG, "transition -> on");
                 } else if (message == MESSAGE_OFF) {
                     gpio_set_level(RELAY_A_GPIO, 0);
                     gpio_set_level(RELAY_B_GPIO, 0);
 
-                    if (xTimerStop(timer, 0) == pdPASS)
+                    if (xTimerStop(timer, 0) == pdPASS) {
+                        ESP_LOGI(TAG, "transition -> off");
+                        mqtt_publish("test/heater/status", "0");
                         state = STATE_OFF;
-
-                    ESP_LOGI(TAG, "transition -> off");
+                    }
                 }
 
                 break;
@@ -118,6 +123,8 @@ void relay_task(void* args) {
                     gpio_set_level(RELAY_A_GPIO, 0);
                     gpio_set_level(RELAY_B_GPIO, 0);
                     state = STATE_OFF;
+
+                    mqtt_publish("test/heater/status", "0");
 
                     ESP_LOGI(TAG, "on -> off");
                 }

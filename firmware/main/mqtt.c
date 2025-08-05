@@ -99,3 +99,7 @@ void mqtt_task(void* params) {
     }
 }
 
+void mqtt_publish(char* topic, char* data) {
+    esp_mqtt_client_publish(mqtt_client, topic, data, strlen(data), 0, 1);
+}
+
